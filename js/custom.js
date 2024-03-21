@@ -1,6 +1,7 @@
 jQuery(document).ready(function () {
     // DOCUMENT READY
     gsap.registerPlugin(ScrollTrigger)
+    let header = document.querySelector('header')
     let loaderTl = gsap.timeline({
         ScrollTrigger: ".loader-overlay",
         defaults: {
@@ -32,10 +33,10 @@ jQuery(document).ready(function () {
             duration: 1.5,
             ease: 'power4.inOut'
         }, "-=0.5")
-        // .to('body', {
-        //     overflow: 'visible',
-        //     duration: 0
-        // })
+    // .to('body', {
+    //     overflow: 'visible',
+    //     duration: 0
+    // })
 
     // HOMEPAGE SLIDER
     $('.homepage-banner .slider').slick({
@@ -55,28 +56,86 @@ jQuery(document).ready(function () {
             menuToggle.classList.toggle('change')
         })
     }
-    if (document.querySelector('.default-panel')) {
-        let firstPanel = document.querySelector('.default-panel');
-        gsap.to(firstPanel, {
-            scrollTrigger: {
-                trigger: firstPanel,
-                start: '49% center',
-                end: 'bottom top',
-                toggleClass: {targets: "header", className: "dark"}
-            }
-        });
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        if (document.querySelector('.skewing-section')) {
+            let firstPanel = document.querySelector('.skewing-section');
+            gsap.to(firstPanel, {
+                scrollTrigger: {
+                    trigger: firstPanel,
+                    start: '100px 100px',
+                    end: 'bottom top',
+                    onEnter: () => {
+                        header.classList.add('dark')
+                    },
+                    onLeaveBack: () => {
+                        header.classList.remove('dark')
+                    }
+                }
+            });
+        }
     }
-    // if (document.querySelector('.header .navbar li')) { 
-        let header = document.querySelector('header')
-        Array.from(document.querySelectorAll("header .navbar ul > li")).forEach(item=> {
-            console.log(item);
-            item.addEventListener("mouseenter", ()=> {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        if (document.querySelector('.default-panel')) {
+            let firstPanel = document.querySelector('.default-panel');
+            gsap.to(firstPanel, {
+                scrollTrigger: {
+                    trigger: firstPanel,
+                    start: '50px 50px',
+                    end: 'bottom top',
+                    onEnter: () => {
+                        header.classList.add('dark')
+                    },
+                    onLeaveBack: () => {
+                        header.classList.remove('dark')
+                    }
+                }
+            });
+        }
+    }
+
+    Array.from(document.querySelectorAll("header .navbar ul > li")).forEach(item => {
+        if (item.querySelector('.megamenu')) {
+            item.addEventListener("mouseenter", () => {
                 header.classList.add('dark2')
             })
-            item.addEventListener("mouseleave", ()=> {
+            item.addEventListener("mouseleave", () => {
                 header.classList.remove('dark2')
             })
-        })
+        }
+    })
     // }
+    if (window.matchMedia("(min-width: 992px)").matches) {
+        document.addEventListener('mousemove', function (e) {
+            const { clientX, clientY } = e;
+            const centerX = window.innerWidth / 5;
+            const centerY = window.innerHeight / 2;
+            const deltaX = (clientX - centerX) * 0.1;
+            const deltaY = (clientY - centerY) * 0.1;
+
+            gsap.to('.skewing-section .thumbnail img', {
+                duration: 1.5,
+                rotationY: 0.05 * deltaX,
+                rotationX: -0.1 * deltaY,
+                transformPerspective: 500,
+                ease: "power3.out"
+            });
+        });
+
+
+        // default-panel
+        // if (window.matchMedia("(min-width: 992px)").matches) {
+        gsap.utils.toArray('.default-panel').forEach(panel => {
+            gsap.from(panel.querySelectorAll('.default-panel-bg:not(:first-child)'), {
+                opacity: 0,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: panel,
+                    scrub: 1,
+                    pin: true,
+                    start: 'bottom bottom'
+                }
+            })
+        })
+    }
 
 });// DOCUMENT READY
