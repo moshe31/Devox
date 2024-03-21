@@ -132,6 +132,7 @@ img {
 /* LOADER */
 .loader-overlay {
     background: url(../images/banner-light.webp) no-repeat center;
+    background-color: #000;
     background-size: cover;
     position: absolute;
     z-index: 99;
