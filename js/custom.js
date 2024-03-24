@@ -118,34 +118,7 @@ jQuery(document).ready(function () {
         })
     }
     // }
-    const cardsTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.intro-section',
-            start: 'top bottom'
-        },
-        defaults: {
-            duration: 1.5
-        },
-        // onComplete: ()=> {
-        //     document.addEventListener('mousemove', function (e) {
-        //         const { clientX, clientY } = e;
-        //         const centerX = window.innerWidth / 5;
-        //         const centerY = window.innerHeight / 2;
-        //         const deltaX = (clientX - centerX) * 0.1;
-        //         const deltaY = (clientY - centerY) * 0.1;
-        //         gsap.utils.toArray('.intro-section .hovering-cards img').forEach(item=> {
-        //             gsap.to(item, {
-        //                 duration: 1.5,
-        //                 rotationY: 0.05 * deltaX,
-        //                 rotationX: -0.1 * deltaY,
-        //                 transformPerspective: 500,
-        //                 ease: "power3.out"
-        //             });
-        //         })
-        //     });
-        // }
     
-    })
     // const cardsTl2 = gsap.timeline({
     //     scrollTrigger: {
     //         trigger: '.intro-section',
@@ -157,25 +130,77 @@ jQuery(document).ready(function () {
     //     }
     
     // })
-
+    const cardsTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.intro-section1',
+            start: '55% bottom',
+            end: 'bottom top'
+        },
+        defaults : {
+            duration: 2
+        }
+        // onComplete: () => {
+        //     gsap.to('.intro-section .hovering-card', {
+        //         scrollTrigger: {
+        //             trigger: '.intro-section',
+        //             scrub: true,
+        //             start: 'centre bottom'
+        //         },
+        //         y: 200
+        //     })
+        // }
+    })
     cardsTl
-    .from('.intro-section .hovering-card.black', {
+    .from('.intro-section1 h2', {
+        y: 150,
+        duration: 1,
+        opacity: 0,
+    })
+    .from('.intro-section1 .hovering-card.black', {
         xPercent: -50,
         yPercent: -50,
+        opacity: 0,
+        ease: 'power4.inOut'
     }, 0)
-    .from('.intro-section .hovering-card.smoke', {
+    .from('.intro-section1 .hovering-card.smoke', {
         yPercent: -50,
+        opacity: 0,
+        ease: 'power4.inOut'
     }, 0)
-    .from('.intro-section .hovering-card.brown', {
+    .from('.intro-section1 .hovering-card.brown', {
         xPercent: 50,
         yPercent: -50,
+        opacity: 0,
+        ease: 'power4.inOut'
     }, 0)
-    .from('.intro-section .hovering-card.gray', {
+    .from('.intro-section1 .hovering-card.gray', {
         xPercent: -50,
         yPercent: 50,
+        opacity: 0,
+        ease: 'power4.inOut'
     }, 0)
-    .from('.intro-section .hovering-card.white', {
+    .from('.intro-section1 .hovering-card.white', {
         xPercent: 50,
         yPercent: 50,
-    }, 0)
+        opacity: 0,
+        ease: 'power4.inOut'
+    }, 0);
+    // const cardsTl2 = gsap.timeline({
+    //     scrollTrigger: {
+    //         trigger: '.intro-section2',
+    //         start: '30% bottom',
+    //         end: 'bottom top',
+    //         scrub: 1
+    //     },
+    //     // defaults : {
+    //     //     duration: 2
+    //     // }
+    // })
+    // cardsTl2
+    // .to('.intro-section2 .hovering-card', {
+    //     y: -200,
+    //     // opacity: 0,
+    //     // ease: 'power4.inOut'
+    //     stagger: 0.01
+    // }, 0);
 });// DOCUMENT READY

@@ -963,6 +963,7 @@ footer .container .row .col-right .navlist a {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .intro-section h2 {
@@ -970,6 +971,7 @@ footer .container .row .col-right .navlist a {
     color: #333;
     font-family: 'Poppins Semi', sans-serif;
     text-align: center;
+    will-change: transform;
 }
 
 .intro-section .hovering-card img {
@@ -980,6 +982,8 @@ footer .container .row .col-right .navlist a {
 
 .intro-section .hovering-card {
     position: absolute;
+    z-index: -1;
+    will-change: transform;
 }
 
 .intro-section .hovering-card.black {
@@ -1619,29 +1623,32 @@ footer .container .row .col-right .navlist a {
         row-gap: 20px;
     }
     .intro-section .hovering-card.black {
-        width: 200px;
-        height: 140px;
+        width: 180px;
+        height: 135px;
     }
 
     .intro-section .hovering-card.smoke {
-        width: 240px;
-        height: 130px;
+        width: 230px;
+        height: 120px;
     }
 
     .intro-section .hovering-card.brown {
-        width: 230px;
-        height: 140px;
+        width: 200px;
+        height: 100px;
     }
 
     .intro-section .hovering-card.gray {
-        width: 260px;
-        height: 160px;
+        width: 230px;
+        height: 120px;
     }
 
     .intro-section .hovering-card.white {
-        width: 300px;
-        height: 150px;
+        width: 230px;
+        height: 120px;
     }
+    .intro-section h2 {
+        font-size: 42px;
+    }    
 }
 
 @media screen and (max-width: 767px) {
